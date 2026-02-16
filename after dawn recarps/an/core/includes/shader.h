@@ -10,7 +10,9 @@
 #include <vector>
 #include <memory>
 
-
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 /*
 load shader from loc,
@@ -38,6 +40,14 @@ std::string fragment_shader_path = std::string();
 Shader();
 void useShader();
 void useProgram();
+
+void setUniform(std::string name, int M);
+void setUniform(std::string name,glm::mat4 N);
+void setUniform(std::string name,glm::vec4 O);
+void setUniform(std::string name,glm::vec3 P);
+
+
+
 void draw();
 ~Shader();
 
@@ -57,6 +67,7 @@ GLuint program;
 GLuint VAO;
 GLuint VBO;
 GLuint IBO;
+
 
     };
 }

@@ -142,6 +142,7 @@ void blue::Shader::useProgram(){
 }
 
 void blue::Shader::draw(){
+    
     glDrawElements(GL_TRIANGLES, static_cast<GLsizei>(indices.size()) , GL_UNSIGNED_INT, 0);
 }
 
@@ -154,3 +155,21 @@ blue::Shader::~Shader(){
   glDeleteShader(fragment_shader_obj);
   glDeleteProgram(program);
 }
+
+
+
+//shader uniforms...
+
+void blue::Shader::setUniform(std::string name, int M){
+glUniform1i(glGetUniformLocation(program , name.c_str()), M);
+}
+void blue::Shader::setUniform(std::string name, glm::mat4 N){
+glUniformMatrix4fv(glGetUniformLocation(program, name.c_str()),1, GL_FALSE, glm::value_ptr(N));
+}
+void blue::Shader::setUniform(std::string name, glm::vec4 O){
+glUniform4fv(glGetUniformLocation(program, name.c_str()), 1, glm::value_ptr(O));
+}
+void blue::Shader::setUniform(std::string name, glm::vec3 P){
+glUniform3fv(glGetUniformLocation(program, name.c_str()), 1, glm::value_ptr(P));
+}
+
