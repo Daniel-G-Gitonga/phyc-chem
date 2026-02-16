@@ -38,5 +38,7 @@ The landlord of my current residence is counting days and am yet to find some ch
 
 Anyway:::
 
-feb 14th 2016///___just glfw and gl recarps.. called it the window recarp.__
-feb 15th 2016///___recarping on major render pipeline , buffers and stuff__
+feb 14th 2026///___just glfw and gl recarps.. called it the window recarp.__
+feb 15th 2026///___recarping on major render pipeline , buffers and stuff__
+feb 16th 2026///___added very tiny features to the recarp files:: reason... tiresome day househunting :) fuck the rich who always have eeverything the easy way ... bwahahahahaha.__
+
