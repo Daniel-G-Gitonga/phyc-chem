@@ -4,7 +4,7 @@ project(an_core)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/includes)
 
 add_library(
-    an_core STATIC   window_a.cpp glad.c shader.cpp
+    an_core STATIC   window_a.cpp glad.c shader.cpp camera.cpp
 )
 
 add_custom_command(
