@@ -1,5 +1,6 @@
 #include "shader.h"
-
+#define STB_IMAGE_IMPLEMENTATION
+   #include "stb_image.h"
 /*
 public:
 
@@ -23,6 +24,7 @@ void blue::Shader::useShader(){
     //
     loadShader();
     renderEngine();
+    loadTexture();
  
 }
 
@@ -142,7 +144,7 @@ void blue::Shader::useProgram(){
 }
 
 void blue::Shader::draw(){
-    
+     
     glDrawElements(GL_TRIANGLES, static_cast<GLsizei>(indices.size()) , GL_UNSIGNED_INT, 0);
 }
 
@@ -151,6 +153,7 @@ blue::Shader::~Shader(){
   glDeleteBuffers(1, &IBO);
   glDeleteVertexArrays(1, &VAO);
   
+  glDeleteTextures(1,&texture);
   glDeleteShader(vertex_shader_obj);
   glDeleteShader(fragment_shader_obj);
   glDeleteProgram(program);
@@ -173,3 +176,25 @@ void blue::Shader::setUniform(std::string name, glm::vec3 P){
 glUniform3fv(glGetUniformLocation(program, name.c_str()), 1, glm::value_ptr(P));
 }
 
+void blue::Shader::loadTexture(){
+    stbi_set_flip_vertically_on_load(true);
+    glGenTextures(1, &texture);
+    glBindTexture(GL_TEXTURE_2D, texture);
+    
+    glActiveTexture(GL_TEXTURE0);
+    
+    int width, height, nrChannels;
+       
+     unsigned char *data = stbi_load(texture_path.c_str(), &width, &height, &nrChannels, 0);
+     if(data){
+     int format = nrChannels = 4 ? GL_RGBA : GL_RGB;
+     //later 2 me: add support for 2 and 1 color format
+     glTexImage2D(GL_TEXTURE_2D, 0, format, width,height, 0, format, GL_UNSIGNED_BYTE, data);
+     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+     }else{
+        std::cout<<"failure loading the data"<<std::endl;
+     }
+      
+     stbi_image_free(data);
+}

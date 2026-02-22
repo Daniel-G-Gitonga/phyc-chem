@@ -8,6 +8,6 @@
 class Application{
 public:
 void loop(GLFWwindow* window, blue::Shader* shader_obj, blue::FollowCamera* cam);//cast between the pointers to facilitate any inherited obj to take place
-
+bool first = true;
 private:
 };

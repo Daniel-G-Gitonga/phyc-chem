@@ -14,6 +14,9 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+
+
+
 /*
 load shader from loc,
 store in a class accesible loc
@@ -35,7 +38,7 @@ std::string name_program = std::string();
 
 std::string vertex_shader_path = std::string();
 std::string fragment_shader_path = std::string();
-
+std::string texture_path = std::string();
 
 Shader();
 void useShader();
@@ -54,6 +57,7 @@ void draw();
 
 private:
 void loadShader();
+void loadTexture();
 void renderEngine();
 void check_err();
 
@@ -68,6 +72,7 @@ GLuint VAO;
 GLuint VBO;
 GLuint IBO;
 
+GLuint texture;
 
     };
 }

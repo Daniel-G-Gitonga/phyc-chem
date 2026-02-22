@@ -6,7 +6,24 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+    blue::FollowCamera* cam_1= new blue::FollowCamera();
 
+
+    void scrollCallback(GLFWwindow* window,double xOffset, double yOffset){
+        cam_1->fov -= static_cast<float>(yOffset) * 2.0f;
+        if(cam_1->fov < 1){
+         cam_1->fov = 1.0f;
+        }
+        if(cam_1->fov > 180){
+         cam_1->fov = 180.0f;
+        }
+    }
+    void cursorCallBack(GLFWwindow* window, double x_pos, double y_pos){
+cam_1->x_pos_c = x_pos;
+cam_1->y_pos_c = y_pos;
+cam_1->updateFollowCamera();
+std::cout<<cam_1->logCamPos();
+    }
 blue::Shader* triangle(){
     blue::Shader* triangle = new blue::Shader();
     std::cout<<"debug :: 0 ;: "<<triangle<<std::endl;
@@ -78,6 +95,7 @@ blue::Shader* triangle(){
     triangle->name_program = "rectangle test \"\'\' ::";
     triangle->fragment_shader_path = "C:\\Users\\USER\\Desktop\\an\\main\\triangle_fs.glsl";//note 2 me ;; convert to relative path
     triangle->vertex_shader_path = "C:\\Users\\USER\\Desktop\\an\\main\\triangle_vs.glsl";
+    triangle->texture_path = "C:\\Users\\USER\\Desktop\\an\\texture\\abc.png";
 std::cout<<"debug :: 1 ;: "<<triangle<<std::endl;
     
     return triangle;
@@ -93,7 +111,9 @@ int main(){
     main_window_frames->setUp();  
     blue::Shader* cust_obj =  triangle();
     
-    blue::FollowCamera* cam_1= new blue::FollowCamera();
+    glfwSetScrollCallback(main_window_frames->window_g,scrollCallback);
+    glfwSetInputMode(main_window_frames->window_g, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+    glfwSetCursorPosCallback(main_window_frames->window_g, cursorCallBack);
     
     main_layer->loop(main_window_frames->window_g, cust_obj, cam_1);//note 2 me:: arg 1 convert to a vector to allow asset management...
     

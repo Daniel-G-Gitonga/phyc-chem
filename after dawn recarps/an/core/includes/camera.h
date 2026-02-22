@@ -9,20 +9,26 @@
 #include <glm/gtc/type_ptr.hpp>
 
 
+#include <string>
+
 namespace blue{
     class Camera{
 public:
-glm::mat4 setUpCamera(GLFWwindow* window);
+glm::mat4 setUpCamera();
+std::string logCamPos();
 
 
-protected:
-glm::vec3 camera_pos = glm::vec3(0.0f,0.0f,-1.0f);
-glm::vec3 camera_front = glm::vec3(0.0f,0.0f,-1.0f);
-glm::vec3 world_up = glm::vec3(0.0f, 1.0f, 0.0f);
-
- glm::mat4 camera = glm::mat4(1.0f);
 double x_pos_c = double();
 double y_pos_c = double();//c = cursor 
+
+float fov = 45.0f;
+
+protected:
+glm::vec3 camera_pos = glm::vec3( -2.0f, 0.10f, 5.0f);
+glm::vec3 camera_front = glm::vec3(0.0f, 0.0f, -1.0f);
+glm::vec3 world_up = glm::vec3( 0.0f, 1.0f, 0.0f);
+
+ glm::mat4 camera = glm::mat4(1.0f);
 
 double x_pos_n = double();
 double y_pos_n =  double();//n = new_position
@@ -31,16 +37,18 @@ double y_pos_n =  double();//n = new_position
 float x_offset = float();
 float y_offset = float();
 
-float yaw = 90.0f;
-float pitch = 90.0f;
+float yaw = 0.0f;
+float pitch = 0.0f;
 
 bool first_c = true;;
+
+
     };
 
     class FollowCamera : public Camera{
 public:
 
-void updateFollowCamera(GLFWwindow* window);
+void updateFollowCamera();
 private:
     };
 }
