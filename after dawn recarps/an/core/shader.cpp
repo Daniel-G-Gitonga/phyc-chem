@@ -198,3 +198,20 @@ void blue::Shader::loadTexture(){
       
      stbi_image_free(data);
 }
+
+void blue::Shader::overlayObj(){
+    name_program = "overlay_obj";
+    fragment_shader_path = "../../main/color_overlay_fs.glsl";
+    if(init){
+    useShader();
+    overlay_program = program;
+    init = false;
+    }
+
+    useProgram();
+    setUniform("model",glm::scale(glm::mat4(1.0f),glm::vec3(1.2f)));
+    setUniform("view",glm::mat4(1.0f));
+    setUniform("projection",glm::ortho(0.0f,600.0f,0.0f,600.0f,0.0f,100.0f));
+    draw();
+    glBindVertexArray(0);
+}

@@ -14,9 +14,10 @@
         if(cam_1->fov < 1){
          cam_1->fov = 1.0f;
         }
-        if(cam_1->fov > 180){
-         cam_1->fov = 180.0f;
+        if(cam_1->fov > 174){
+         cam_1->fov = 173.0f;
         }
+        std::cout<<"fov : "<<cam_1->fov<<std::endl;
     }
     void cursorCallBack(GLFWwindow* window, double x_pos, double y_pos){
 cam_1->x_pos_c = x_pos;

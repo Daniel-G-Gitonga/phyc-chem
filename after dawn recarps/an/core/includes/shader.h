@@ -39,10 +39,17 @@ std::string name_program = std::string();
 std::string vertex_shader_path = std::string();
 std::string fragment_shader_path = std::string();
 std::string texture_path = std::string();
+GLuint texture = GLuint();
+
+GLuint overlay_program = GLuint();
+GLuint obj_program = GLuint();
+GLuint program  = GLuint();
+
 
 Shader();
 void useShader();
 void useProgram();
+void overlayObj();
 
 void setUniform(std::string name, int M);
 void setUniform(std::string name,glm::mat4 N);
@@ -66,13 +73,12 @@ const char* fragment_shader;
 
 GLuint fragment_shader_obj;
 GLuint vertex_shader_obj;
-GLuint program;
 
 GLuint VAO;
 GLuint VBO;
 GLuint IBO;
 
-GLuint texture;
 
+bool init = true;
     };
 }

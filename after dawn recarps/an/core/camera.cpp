@@ -28,7 +28,7 @@ if(first_c){
 }
 */
 
-float sensitivity = 0.5f;
+float sensitivity = 0.1f;
 x_offset = static_cast<float>(x_pos_n) - static_cast<float>(x_pos_c);
 y_offset = static_cast<float>(y_pos_c) - static_cast<float>(y_pos_n);//n = new cursor position
 x_pos_n = x_pos_c;
@@ -37,6 +37,12 @@ y_pos_n = y_pos_c;
 yaw += sensitivity * x_offset;
 pitch += sensitivity * y_offset;
 
+if(pitch > 90.0f){
+    pitch = 89.0f;
+}
+if(pitch < -90.0f){
+   pitch = -89.0f;
+}
 
 glm::vec3 direction;
 
@@ -50,6 +56,6 @@ camera_front = glm::normalize(direction);
 
 std::string blue::Camera::logCamPos(){
     std::string pos = "xPos_front : "+std::to_string(camera_front.x)+" yPos_front : "+std::to_string(camera_front.y)+" zPos_front : "+std::to_string(camera_front.z) + "\n";
-    pos += "\n xPos_pos : "+ std::to_string(camera_pos.x)+" yPos_pos : "+std::to_string(camera_pos.y)+" zPos_pos : "+std::to_string(camera_pos.z)+"\n"; 
+    pos += "\n xPos_pos : "+ std::to_string(camera_pos.x)+" yPos_pos : "+std::to_string(camera_pos.y)+" zPos_pos : "+std::to_string(camera_pos.z)+"\n"+"pitch : "+std::to_string((pitch))+" yaw : "+std::to_string((yaw))+"\n"; 
     return pos;
 }

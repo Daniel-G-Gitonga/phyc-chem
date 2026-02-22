@@ -22,10 +22,11 @@ double x_pos_c = double();
 double y_pos_c = double();//c = cursor 
 
 float fov = 45.0f;
-
-protected:
 glm::vec3 camera_pos = glm::vec3( -2.0f, 0.10f, 5.0f);
 glm::vec3 camera_front = glm::vec3(0.0f, 0.0f, -1.0f);
+
+protected:
+
 glm::vec3 world_up = glm::vec3( 0.0f, 1.0f, 0.0f);
 
  glm::mat4 camera = glm::mat4(1.0f);

@@ -42,3 +42,4 @@ feb 14th 2026///___just glfw and gl recarps.. called it the window recarp.__
 feb 15th 2026///___recarping on major render pipeline , buffers and stuff__
 feb 16th 2026///___added very tiny features to the recarp files:: reason... tiresome day househunting :) fuck the rich who always have eeverything the easy way ... bwahahahahaha.__
 
+feb 22nd 2026///___An engineers odesy or whatever, successfully moved to a new location, cheap and affordable, far from uni but a road cross away from the air strip atleast. Already settled. Been doing ultra recarps for the pst several days, managed framebuffers and cube maps plus fixed the camera issues, what is left is some more advanced cconcepts, learn lighting and imgui which am lanning to do tonight. anway , the house wins bwahahaha. had a dream impregnating a lady, perhaps Rose, not sure, smt for sure though, she was damn beautiful.__

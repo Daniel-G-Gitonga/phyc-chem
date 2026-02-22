@@ -3,7 +3,8 @@
 #include <iostream>
 #include "shader.h"
 #include "camera.h"
-
+#include <vector>
+#include <string>
 
 class Application{
 public:
