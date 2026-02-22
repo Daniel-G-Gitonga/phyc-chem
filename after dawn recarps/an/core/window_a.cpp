@@ -9,11 +9,14 @@ this->monitor = monitor;
 this->share = share;
 
 if(!glfwInit()){
+  
      glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
      glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
      glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
      glfwWindowHint(GLFW_POSITION_X, 300);
      glfwWindowHint(GLFW_POSITION_Y, 200);
+     glfwWindowHint(GLFW_SAMPLES, 4);
+
 }
 }
  

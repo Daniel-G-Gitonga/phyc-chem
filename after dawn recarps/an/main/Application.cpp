@@ -16,8 +16,8 @@ shader_obj->useShader();
 program_main_cube = shader_obj->program;
 
 shader_obj->name_program = "cube_map ";
-shader_obj->vertex_shader_path = "C:\\Users\\USER\\Desktop\\an\\main\\cubemap_vs.glsl";
-shader_obj->fragment_shader_path = "C:\\Users\\USER\\Desktop\\an\\main\\cubemap_fs.glsl";
+shader_obj->vertex_shader_path = "..\\..\\main\\cubemap_vs.glsl";
+shader_obj->fragment_shader_path = "..\\..\\main\\cubemap_fs.glsl";
 shader_obj->useShader();
 program_cube_map = shader_obj->program;
 
@@ -69,7 +69,7 @@ bool first_s = true;
 glEnable(GL_DEPTH_TEST);
 glEnable(GL_BLEND);
 glEnable(GL_STENCIL_TEST);
-
+glEnable(GL_MULTISAMPLE);
 
 
 //cubemap test
@@ -78,12 +78,12 @@ glGenTextures(1, &texture_cube);
 glBindTexture(GL_TEXTURE_CUBE_MAP, texture_cube);
 
 std::vector<std::string> faces = {
-    "../../texture/left.png",//+x
-    "../../texture/leftneg.png",//-x
-    "../../texture/right.png",//+y
-    "../../texture/rightneg.png",//-y
-    "../../texture/zed.png",//+z
-    "../../texture/zedneg.png" //-z
+    "../../texture/+x.png",//+x
+    "../../texture/-x.png",//-x
+    "../../texture/+y.png",//+y
+    "../../texture/-y.png",//-y
+    "../../texture/+z.png",//+z
+    "../../texture/-z.png" //-z
 };
 int width, height, nr_channels;
 for(int i = 0; i < faces.size(); i++){
@@ -115,10 +115,12 @@ cam->camera_pos = glm::vec3(0.0f);
  
 
 
+//sky box
+
 glEnable(GL_DEPTH_TEST);
 
 glUseProgram(program_cube_map);
- shader_obj->setUniform("model",glm::translate(glm::scale(glm::mat4(1.0f),glm::vec3(5.0f)),pos));
+ shader_obj->setUniform("model",glm::translate(glm::scale(glm::mat4(1.0f),glm::vec3(50.0f)), glm::vec3(0.0f)));
  shader_obj->setUniform("view", cam->setUpCamera());
  shader_obj->setUniform("projection",glm::perspective(glm::radians(cam->fov),600.0f/600.0f,0.1f,100.0f));
  //for optimazation
@@ -141,7 +143,7 @@ glDisable(GL_DEPTH_TEST);
 glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
  //shader_obj->useProgram();
  glUseProgram(program_main_cube);
- shader_obj->setUniform("model",glm::translate(glm::rotate(glm::mat4(1.0f),glm::sin(static_cast<float>(glfwGetTime())) * glm::radians(180.0f),glm::vec3(0.0f,1.0f,1.0f)),glm::vec3(0.0f)));
+ shader_obj->setUniform("model",glm::translate(glm::rotate(glm::mat4(1.0f),glm::sin(static_cast<float>(glfwGetTime())) * glm::radians(180.0f),glm::vec3(0.0f,0.0f,1.0f)),glm::vec3(0.0f,0.0f,2.0f)));
  shader_obj->setUniform("view", cam->setUpCamera());
  shader_obj->setUniform("projection",glm::perspective(glm::radians(cam->fov),600.0f/600.0f,0.1f,100.0f));
  //for optimazation
@@ -174,11 +176,112 @@ glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
 */  
 
-//sky box
+//will be functioned later...on addition of events :: plus gui
+if(glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS){
+cam->camera_pos += cam->camera_front * 0.50f;
+if(cam->camera_pos.x > 24.5){
+cam->camera_pos.x = 24.5;
+}
 
+if(cam->camera_pos.y > 24.5){
+cam->camera_pos.y = 24.5;
+}
 
+if(cam->camera_pos.z > 24.5){
+cam->camera_pos.z = 24.5;
+}
+if(cam->camera_pos.x < -24.5){
+cam->camera_pos.x = -24.5;
+}
+
+if(cam->camera_pos.y < -24.5){
+cam->camera_pos.y = -24.5;
+}
+
+if(cam->camera_pos.z < -24.5){
+cam->camera_pos.z = -24.5;
+}
+}
+
+if(glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS){
+cam->camera_pos -= cam->camera_front * 0.5f;
+
+if(cam->camera_pos.x < -24.5){
+cam->camera_pos.x = -24.5;
+}
+
+if(cam->camera_pos.y < -24.5){
+cam->camera_pos.y = -24.5;
+}
+
+if(cam->camera_pos.z < -24.5){
+cam->camera_pos.z = -24.5;
+}
+if(cam->camera_pos.x > 24.5){
+cam->camera_pos.x = 24.5;
+}
+
+if(cam->camera_pos.y > 24.5){
+cam->camera_pos.y = 24.5;
+}
+
+if(cam->camera_pos.z > 24.5){
+cam->camera_pos.z = 24.5;
+}
+}
+
+if(glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS){
+cam->camera_pos += glm::cross(cam->camera_front , glm::vec3(0.0f,1.0f,0.0f)) * 0.5f;
+if(cam->camera_pos.x < -24.5){
+cam->camera_pos.x = -24.5;
+}
+
+if(cam->camera_pos.y < -24.5){
+cam->camera_pos.y = -24.5;
+}
+
+if(cam->camera_pos.z < -24.5){
+cam->camera_pos.z = -24.5;
+}
+if(cam->camera_pos.x > 24.5){
+cam->camera_pos.x = 24.5;
+}
+
+if(cam->camera_pos.y > 24.5){
+cam->camera_pos.y = 24.5;
+}
+
+if(cam->camera_pos.z > 24.5){
+cam->camera_pos.z = 24.5;
+}
+}
+if(glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS){
+cam->camera_pos -= glm::cross(cam->camera_front,glm::vec3(0.0f,1.0f,0.0f)) * 0.5f;
+if(cam->camera_pos.x < -24.5){
+cam->camera_pos.x = -24.5;
+}
+
+if(cam->camera_pos.y < -24.5){
+cam->camera_pos.y = -24.5;
+}
+
+if(cam->camera_pos.z < -24.5){
+cam->camera_pos.z = -24.5;
+}
+if(cam->camera_pos.x > 24.5){
+cam->camera_pos.x = 24.5;
+}
+
+if(cam->camera_pos.y > 24.5){
+cam->camera_pos.y = 24.5;
+}
+
+if(cam->camera_pos.z > 24.5){
+cam->camera_pos.z = 24.5;
+}
+}
 // shader_obj->useProgram();
-pos =  cam->camera_pos;
+
 
     glfwPollEvents();
     glfwSwapBuffers(window);

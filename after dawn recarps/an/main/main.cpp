@@ -94,15 +94,26 @@ blue::Shader* triangle(){
     };//ai generated indices
 
     triangle->name_program = "rectangle test \"\'\' ::";
-    triangle->fragment_shader_path = "C:\\Users\\USER\\Desktop\\an\\main\\triangle_fs.glsl";//note 2 me ;; convert to relative path
-    triangle->vertex_shader_path = "C:\\Users\\USER\\Desktop\\an\\main\\triangle_vs.glsl";
-    triangle->texture_path = "C:\\Users\\USER\\Desktop\\an\\texture\\abc.png";
+    triangle->fragment_shader_path = "..\\..\\main\\triangle_fs.glsl";//note 2 me ;; convert to relative path
+    triangle->vertex_shader_path = "..\\..\\main\\triangle_vs.glsl";
+    triangle->texture_path = "..\\..\\texture\\abc.png";
 std::cout<<"debug :: 1 ;: "<<triangle<<std::endl;
     
     return triangle;
 }
 
+int width_c = int();
+int height_c = int();
+bool first_c = true;
 
+    void framebufferSizecallback(GLFWwindow* window, int width, int height){
+if(first_c){
+   width_c = width;
+   height_c = height;
+   glViewport(0,0,width,height); 
+first_c = false;
+}
+    }
 int main(){
     blue::WindowG* main_window_frames = new blue::WindowG(
         600, 600, "main_window-frame", NULL, NULL
@@ -115,7 +126,8 @@ int main(){
     glfwSetScrollCallback(main_window_frames->window_g,scrollCallback);
     glfwSetInputMode(main_window_frames->window_g, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     glfwSetCursorPosCallback(main_window_frames->window_g, cursorCallBack);
-    
+    glfwSetFramebufferSizeCallback(main_window_frames->window_g, framebufferSizecallback);
+
     main_layer->loop(main_window_frames->window_g, cust_obj, cam_1);//note 2 me:: arg 1 convert to a vector to allow asset management...
     
     delete cam_1;
