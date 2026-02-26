@@ -82,7 +82,16 @@ void blue::Shader::renderEngine(){
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IBO);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned int), indices.data(), GL_STATIC_DRAW);
 
+     //formaat assumed for all passed data,
+    //pos 3 float, normal 3 float, texture-coords 2 floats
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(0));
+    glEnableVertexAttribArray(1);
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
+    glEnableVertexAttribArray(2);
+    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
 
+    
     vertex_shader_obj = glCreateShader(GL_VERTEX_SHADER);
     glShaderSource(vertex_shader_obj,1, &vertex_shader, NULL);
     glCompileShader(vertex_shader_obj);
@@ -98,14 +107,7 @@ void blue::Shader::renderEngine(){
     check_err();
 
 
-     //formaat assumed for all passed data,
-    //pos 3 float, normal 3 float, texture-coords 2 floats
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(0));
-    glEnableVertexAttribArray(1);
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
-    glEnableVertexAttribArray(2);
-    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
+    
 
     
 }

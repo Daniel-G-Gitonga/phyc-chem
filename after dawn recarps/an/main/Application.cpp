@@ -3,7 +3,6 @@
    #include "stb_image.h"
 
 
-
 void Application::loop(GLFWwindow* window, blue::Shader* shader_obj, blue::FollowCamera* cam){
 shader_obj->useShader();
 
@@ -106,11 +105,22 @@ glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
 glm::vec3 pos = glm::vec3(0.0f);
 cam->camera_pos = glm::vec3(0.0f);
 
+
+
+
  while(!glfwWindowShouldClose(window)){
 
-//glBindFramebuffer(GL_FRAMEBUFFER, fbo);
 
-    glClearColor(0.20f, 0.20f, 0.30f, 1.0f);
+
+
+
+
+//glBindFramebuffer(GL_FRAMEBUFFER, fbo);
+    
+    int display_w, display_h;
+    glfwGetFramebufferSize(window, &display_w, &display_h);
+    glViewport(0, 0, display_w, display_h);
+    glClearColor(1.0f,1.0f,1.0f,1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
  
 
@@ -287,5 +297,6 @@ cam->camera_pos.z = 24.5;
     glfwSwapBuffers(window);
  
  }
+
  }   
 }

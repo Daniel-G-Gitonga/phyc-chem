@@ -1,6 +1,5 @@
  #include "window_a.h"
 
-
 blue::WindowG::WindowG(int width, int height, const char* title, GLFWmonitor* monitor, GLFWwindow* share){
 this->width = width;
 this->height = height;
@@ -31,7 +30,7 @@ if(!glfwInit()){
      window_g = window;//allow main window to be accessed outside this func
      
     glfwMakeContextCurrent(window_g);
-
+    
      if(!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)){
        printf("failed to initialize glad ...\n");
      }

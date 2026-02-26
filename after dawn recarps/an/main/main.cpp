@@ -126,7 +126,7 @@ int main(){
     glfwSetScrollCallback(main_window_frames->window_g,scrollCallback);
     glfwSetInputMode(main_window_frames->window_g, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     glfwSetCursorPosCallback(main_window_frames->window_g, cursorCallBack);
-    glfwSetFramebufferSizeCallback(main_window_frames->window_g, framebufferSizecallback);
+    //glfwSetFramebufferSizeCallback(main_window_frames->window_g, framebufferSizecallback);
 
     main_layer->loop(main_window_frames->window_g, cust_obj, cam_1);//note 2 me:: arg 1 convert to a vector to allow asset management...
     
