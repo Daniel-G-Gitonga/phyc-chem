@@ -1,16 +1,9 @@
 #engine ventures... 
 
 
-NAME:: GITONGA DANIEL GACHUHI
-OCC :: CHEMICAL ENGINEERING STUDENT
-CURRENT BALANCE :: 36K as of 15th sep 2026
-BELIEF:: <GET OR DIE TRYING>
-SOCIALS {
-           1.FB: https://www.facebook.com/profile.php?id=61586586813682
-           2.IG: https://www.instagram.com/gitonga_daniel_?igsh=azVrMTZhcWJxdGxn
+
            3.WA: +254714327997
          
-}
 
 feb 12th 2026 _just finished 2.2 examinations for my chemical engineering degree._
 
